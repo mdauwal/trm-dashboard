@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRM Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200..1000&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Mulish", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+
+        .container {
+            display: flex;
+            height: calc(100vh - 50px);
+        }
+
+        .sidebar {
+            width: 50px;
+            background-color: #333;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            margin: 20px 0;
+            font-size: 10px;
+        }
+
+        .sidebar a img {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            top: 40px;
+        }
+
+        .logo-column {
+            width: 100px;
+            background-color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 100px;
+            height: auto;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 10px;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            color: #FF7A00;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .menu a img {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            background-color: white;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-left h1 {
+            margin: 0;
+            color: #34475E;
+        }
+
+        .header-left p {
+            margin: 5px 20px 0 0;
+            color: #2F2F2F;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-right button {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f3f3f3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        .header-right button img {
+            margin-right: 10px;
+        }
+
+        .header-right button:hover {
+            background-color: #f4f4f4;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            color: #34475E;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .form-row label {
+            width: 48%;
+        }
+
+        .form-row input,
+        .form-row select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .top-bar {
+            width: calc(100% - 70px);
+            height: 50px;
+            background-color: white;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .top-bar img {
+            width: 20px;
+            height: 20px;
+            margin-right: 30px;
+            cursor: pointer;
+        }
+
+        .account-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .account-dropdown-content {
+            display: none;
+            position: absolute;
+            right: 10px;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .account-dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .account-dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .account-dropdown:hover .account-dropdown-content {
+            display: block;
+        }
+
+        .account-dropdown:hover p {
+            background-color: #ddd;
+            cursor: pointer;
+        }
+
+        .header-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header-right a {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #FF7A00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 20px;
+            text-decoration: none;
+        }
+
+        .header-right a i {
+            margin-right: 10px;
+        }
+
+        .header-right a:hover {
+            background-color: #e64a19;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar,
+            .logo-column {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-around;
+            }
+
+            .sidebar a,
+            .logo-column .menu a {
+                font-size: 14px;
+                margin: 10px;
+            }
+
+            .top-bar {
+                width: calc(100% - 40px);
+                padding: 0 10px;
+                justify-content: space-between;
+            }
+
+            .main-content {
+                margin-top: 10px;
+                padding: 10px;
+            }
+
+            .header-left h1,
+            .header-left p {
+                font-size: 16px;
+            }
+
+            .header-right a {
+                padding: 5px 10px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar a img,
+            .logo-column .menu a img {
+                width: 15px;
+                height: 15px;
+            }
+
+            .sidebar,
+            .logo-column {
+                padding: 10px;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+
+            .form-row label {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .header-left h1,
+            .header-left p,
+            .header-right a {
+                font-size: 12px;
+            }
+
+            .top-bar img {
+                width: 15px;
+                height: 15px;
+                margin-right: 10px;
+            }
+        }
+    </style>
+    <script>
+        const lgas = {
+            "Abia": ["Aba North", "Aba South", "Arochukwu", "Bende", "Ikwuano", "Isiala Ngwa North", "Isiala Ngwa South", "Isuikwuato", "Obi Ngwa", "Ohafia", "Osisioma Ngwa", "Ugwunagbo", "Ukwa East", "Ukwa West", "Umuahia North", "Umuahia South", "Umu Nneochi"],
+            "Adamawa": ["Demsa", "Fufure", "Ganye", "Girei", "Gombi", "Guyuk", "Hong", "Jada", "Lamurde", "Madagali", "Maiha", "Mayo-Belwa", "Michika", "Mubi North", "Mubi South", "Numan", "Shelleng", "Song", "Toungo", "Yola North", "Yola South"],
+            "Akwa Ibom": ["Abak", "Eastern Obolo", "Eket", "Esit Eket", "Essien Udim", "Etim Ekpo", "Etinan", "Ibeno", "Ibesikpo Asutan", "Ibiono-Ibom", "Ika", "Ikono", "Ikot Abasi", "Ikot Ekpene", "Ini", "Itu", "Mbo", "Mkpat-Enin", "Nsit-Atai", "Nsit-Ibom", "Nsit-Ubium", "Obot Akara", "Okobo", "Onna", "Oron", "Oruk Anam", "Udung-Uko", "Ukanafun", "Uruan", "Urue-Offong/Oruko", "Uyo"],
+            "Anambra": ["Aguata", "Anambra East", "Anambra West", "Anaocha", "Awka North", "Awka South", "Ayamelum", "Dunukofia", "Ekwusigo", "Idemili North", "Idemili South", "Ihiala", "Njikoka", "Nnewi North", "Nnewi South", "Ogbaru", "Onitsha North", "Onitsha South", "Orumba North", "Orumba South", "Oyi"],
+            "Bauchi": ["Alkaleri", "Bauchi", "Bogoro", "Damban", "Darazo", "Dass", "Gamawa", "Ganjuwa", "Giade", "Itas/Gadau", "Jama'are", "Katagum", "Kirfi", "Misau", "Ningi", "Shira", "Tafawa Balewa", "Toro", "Warji", "Zaki"]
+            // Add the rest of the states and LGAs here...
+        };
+
+        function populateLgas() {
+            const stateSelect = document.getElementById('states');
+            const lgaSelect = document.getElementById('lgas');
+            const selectedState = stateSelect.value;
+
+            // Clear the LGA dropdown
+            lgaSelect.innerHTML = '<option value="">Select a Local Government Area</option>';
+
+            if (selectedState && lgas[selectedState]) {
+                const selectedLgas = lgas[selectedState];
+                selectedLgas.forEach(lga => {
+                    const option = document.createElement('option');
+                    option.value = lga;
+                    option.textContent = lga;
+                    lgaSelect.appendChild(option);
+                });
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="top-bar">
+        <img src="./images/bell.png" alt="Bell Icon">
+        <img src="./images/user.png" alt="User Avatar">
+        <div class="account-dropdown">
+            <p>Muhammad</p>
+            <div class="account-dropdown-content">
+                <a href="#">Auwal</a>
+                <a href="#">Yahaya</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <a href="#"><img src="./images/vector1.png" alt=""></a>
+            <a href="#"><img src="./images/vector2.png" alt=""></a>
+            <a href="#"><img src="./images/Vector3.png" alt=""></a>
+            <a href="#"><img src="./images/vector4.png" alt=""></a>
+            <a href="#"><img src="./images/vector5.png" alt=""></a>
+            <a href="#"><img src="./images/vector6.png" alt=""></a>
+        </div>
+        <div class="logo-column">
+            <div class="logo">
+                <img src="./images/logo2.png" alt="Logo">
+            </div>
+            <h4>TRM</h4>
+            <div class="menu">
+                <a href="index.html"><img src="./images/overviewIcon.png" alt=""> Overview</a>
+                <a href="inspectList.html"><img src="./images/requestIcon.png" alt=""> Requests</a>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <div class="header-left">
+                    <h1>Create New Inspection</h1>
+                    <p>See inspections across all business classes.</p>
+                </div>
+                <div class="header-right">
+                    <img src="./images/close.png" id="closeButton" alt="">
+                </div>
+            </div>
+            <div class="form-container">
+                <h2>Pre-Loss Inspection - Property</h2>
+                <div class="form-row">
+                    <label>
+                        Policy Number (optional)
+                        <input type="text">
+                    </label>
+                    <label>
+                        Insured For (optional)
+                        <input type="text">
+                    </label>
+                </div>
+                <div class="form-row">
+                    <label>
+                        Assign To
+                        <input type="text">
+                    </label>
+                </div>
+                <div class="form-row">
+                    <label>
+                        Contact First Name
+                        <input type="text">
+                    </label>
+                    <label>
+                        Contact Last Name
+                        <input type="text">
+                    </label>
+                </div>
+                <div class="form-row">
+                    <label>
+                        Contact Phone Number
+                        <input type="text" value="+234">
+                    </label>
+                    <label>
+                        Contact Email Address
+                        <input type="text">
+                    </label>
+                </div>
+                <div class="form-row">
+                    <label>
+                        Risk House Number
+                        <input type="text">
+                    </label>
+                    <label>
+                        Risk Address
+                        <input type="text">
+                    </label>
+                </div>
+                <div class="form-row">
+                    <label for="states">
+                        State
+                        <select id="states" name="states" onchange="populateLgas()">
+                            <option value="">Select</option>
+                            <option value="Abia">Abia</option>
+                            <option value="Adamawa">Adamawa</option>
+                            <option value="Akwa Ibom">Akwa Ibom</option>
+                            <option value="Anambra">Anambra</option>
+                            <option value="Bauchi">Bauchi</option>
+                        </select>
+                    </label>
+                    <label for="lgas">
+                        LGA
+                        <select id="lgas" name="lgas">
+                            <option value="">Select</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="header-right">
+                    <a href="inspectList.html"><i class="fas fa-plus"></i> Create Inspection</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to close the page and redirect to index.html
+        document.getElementById('closeButton').addEventListener('click', () => {
+            window.location.href = 'newInspection.html';
+        });
+    </script>
+</body>
+
+</html>

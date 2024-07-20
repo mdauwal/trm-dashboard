@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRM Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200..1000&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Mulish", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+        .container {
+            display: flex;
+            height: calc(100vh - 50px);
+        }
+        .sidebar {
+            width: 50px;
+            background-color: #333;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 0;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+        .sidebar a img {
+            width: 20px;
+            height: 20px;
+        }
+        .logo-column {
+            width: 100px;
+            background-color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            width: 100px;
+            height: auto;
+        }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 10px;
+        }
+        .menu a {
+            display: flex;
+            align-items: center;
+            color: #FF7A00;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .menu a img {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            background-color: #f3f3f3;
+            overflow-y: auto;
+            margin-top: 40px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header-left {
+            display: flex;
+            flex-direction: column;
+        }
+        .header-left h1 {
+            margin: 0;
+            color: #34475E;
+        }
+        .header-left p {
+            margin: 5px 0 0 0;
+            color: #2F2F2F;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+        .header-right button {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f3f3f3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+        .header-right button i {
+            margin-right: 10px;
+        }
+        .header-right button:hover {
+            background-color: #f4f4f4;
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .inspection-cards {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .card {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .card img {
+            width: 100px;
+            height: 100px;
+        }
+        .card p {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+        .class-select {
+            max-width: 400px;
+        }
+        .select-class {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .select-class label {
+            position: relative;
+            right: 120%;
+        }
+        .select-class select {
+            max-width: 400px;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .create-request-btn {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #ccc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: not-allowed;
+            margin-top: 20px;
+        }
+        .create-request-btn i {
+            margin-right: 10px;
+        }
+        .top-bar {
+            width: 83%;
+            height: 45px;
+            background-color: white;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            left: 190px;
+            right: 100px;
+            top: 0;
+            z-index: 1000;
+        }
+        .top-bar img {
+            width: 20px;
+            height: 20px;
+            margin-right: 30px;
+            cursor: pointer;
+        }
+        .account-dropdown {
+            position: relative;
+            right: 28px;
+            display: inline-block;
+        }
+        .account-dropdown-content {
+            display: none;
+            position: absolute;
+            right: 10px;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        .account-dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .account-dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .account-dropdown:hover .account-dropdown-content {
+            display: block;
+        }
+        .account-dropdown:hover p {
+            background-color: #ddd;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+            }
+            .sidebar {
+                flex-direction: row;
+                justify-content: space-around;
+                height: 50px;
+                width: 100%;
+            }
+            .sidebar a {
+                margin: 0;
+            }
+            .logo-column {
+                width: 100%;
+                align-items: center;
+                padding: 10px;
+                flex-direction: row;
+                justify-content: center;
+            }
+            .main-content {
+                margin-top: 0;
+                padding: 10px;
+            }
+            .top-bar {
+                width: 100%;
+                left: 0;
+                right: 0;
+                top: 50px;
+            }
+        }
+        @media (max-width: 480px) {
+            .header-left h1 {
+                font-size: 20px;
+            }
+            .header-left p {
+                font-size: 14px;
+            }
+            .card {
+                width: 150px;
+                height: 150px;
+                padding: 10px;
+            }
+            .card img {
+                width: 70px;
+                height: 70px;
+            }
+            .card p {
+                font-size: 14px;
+            }
+            .select-class label {
+                right: 0;
+                position: static;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <img src="./images/bell.png" alt="Bell Icon">
+        <img src="./images/user.png" alt="User Avatar">
+        <div class="account-dropdown">
+            <p>Muhammad</p>
+            <div class="account-dropdown-content">
+                <a href="#">Auwal</a>
+                <a href="#">Yahaya</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <a href="#"><img src="./images/vector1.png" alt=""></a>
+            <a href="#"><img src="./images/vector2.png" alt=""></a>
+            <a href="#"><img src="./images/Vector3.png" alt=""></a>
+            <a href="#"><img src="./images/vector4.png" alt=""></a>
+            <a href="#"><img src="./images/vector5.png" alt=""></a>
+            <a href="#"><img src="./images/vector6.png" alt=""></a>
+        </div>
+        <div class="logo-column">
+            <div class="logo">
+                <img src="./images/logo2.png" alt="Logo">
+            </div>
+            <h4>TRM</h4>
+            <div class="menu">
+                <a href="index.html"><img src="./images/overviewIcon.png" alt=""> Overview</a>
+                <a href="inspectList.html"><img src="./images/requestIcon.png" alt=""> Requests</a>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <div class="header-left">
+                    <h1>Create New Inspection</h1>
+                    <p>See inspections across all business classes.</p>
+                </div>
+                <div class="header-right">
+                    <button id="closeButton"><img src="./images/close.png" alt=""></button>
+                </div>
+            </div>
+            <div class="content">
+                <div class="inspection-cards">
+                    <div class="card" id="preLossCard">
+                        <img src="./images/pre-lost.png" alt="Pre-loss Inspection">
+                        <p>Pre-loss Inspection</p>
+                    </div>
+                    <div class="card" id="postLossCard">
+                        <img src="./images/pre-lost.png" alt="Post-loss Inspection">
+                        <p>Post-loss Inspection</p>
+                    </div>
+                </div>
+                <div class="select-class">
+                    <label for="class-select">Choose a class</label>
+                    <select id="class-select">
+                        <option data-icon="&#xf1ad;" value="property">Property</option>
+                        <option data-icon="&#xf1b9;" value="motors">Motors</option>
+                        <option data-icon="&#xf21a;" value="marine">Marine</option>
+                        <option data-icon="&#xf186;" value="agric">Agric</option>
+                        <option data-icon="&#xf0f6;" value="band">Band</option>
+                        <option data-icon="&#xf0ad;" value="engineering">Engineering</option>
+                    </select>
+                    <button class="create-request-btn" disabled><i class="fas fa-plus"></i> Create Request</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let selectedInspection = null;
+
+        function handleCardClick(event) {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => card.style.border = 'none');
+            event.currentTarget.style.border = '2px solid #FF7A00';
+            selectedInspection = event.currentTarget.id;
+
+            const createRequestButton = document.querySelector('.create-request-btn');
+            createRequestButton.style.backgroundColor = '#FF7A00';
+            createRequestButton.style.cursor = 'pointer';
+            createRequestButton.disabled = false;
+        }
+
+        document.getElementById('preLossCard').addEventListener('click', handleCardClick);
+        document.getElementById('postLossCard').addEventListener('click', handleCardClick);
+
+        document.querySelector('.create-request-btn').addEventListener('click', () => {
+            if (selectedInspection === 'preLossCard') {
+                window.location.href = 'newInspectForm.html';
+            } else if (selectedInspection === 'postLossCard') {
+                window.location.href = 'postInspectForm.html';
+            }
+        });
+
+        document.getElementById('closeButton').addEventListener('click', () => {
+            window.location.href = 'index3.html';
+        });
+    </script>
+</body>
+</html>
