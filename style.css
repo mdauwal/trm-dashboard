@@ -230,9 +230,6 @@ body, html {
       margin-left: 0;
   }
 }
-.logged-in {
-  margin-left: -70px;
-} 
 
   /* Reset CSS */
   .split-screen-grid {
