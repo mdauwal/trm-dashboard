@@ -1,0 +1,373 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Mulish', sans-serif;
+}
+
+.split-screen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.left-pane {
+  background-color: #FFFBF7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.right-pane {
+  background-image: url('bg.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.banner {
+  background-color: white;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #585858;
+  width: 90%;
+  height: auto;
+  max-width: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.banner-image {
+  height: 50px;
+  border: 2px solid white;
+  flex-shrink: 0;
+}
+
+.banner-text {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 5px;
+  margin-top: 0px;
+}
+.banner-text p {
+  margin-top: -15px;
+}
+
+.logo {
+  width: 60px;
+  height: 70px;
+  margin-left: 70px;
+  margin-bottom: 30px;
+}
+
+.heading-container {
+  width: 100%;
+  margin-left: -75px;
+  padding-left: 70px;
+}
+
+.heading {
+  color: #666869;
+  font-weight: 700;
+}
+
+.subheading {
+  color: #AEB1B0;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: -20px;
+}
+
+.textfield-container {
+  width: 80%;
+  margin: 10px auto;
+  position: relative;
+}
+
+.styled-textfield {
+  width: 100%;
+  height: 55px;
+  padding: 20px 10px 10px 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  color: #000;
+  position: relative;
+  background-color: white;
+}
+
+.textfield-label {
+  color: #000;
+  font-size: 12px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  
+}
+.logged-in {
+  margin-left: -230px;
+}
+
+.styled-textfield:focus + .textfield-label,
+.styled-textfield:not(:placeholder-shown) + .textfield-label {
+  top: 5px;
+  left: 10px;
+  font-size: 10px;
+  color: #AEB1B0;
+}
+
+.textfield-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #AEB1B0;
+  cursor: pointer;
+}
+
+.password-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.show-hide {
+  color: #FF7A00;
+  margin-right: 5px;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 10px auto;
+}
+
+.styled-link {
+  text-decoration: none;
+  color: #AEB1B0;
+  cursor: pointer;
+}
+
+.button-container {
+  width: 80%;
+  margin: 10px auto;
+  padding-bottom: 20px;
+}
+
+.login-button {
+  width: 100%;
+  text-transform: none;
+  background-color: #FF7A00;
+  border: none;
+  padding: 15px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.help-outline {
+  color: white;
+  text-align: right;
+  padding-right: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .split-screen {
+      grid-template-columns: 1fr;
+  }
+
+  .logo {
+      margin: 0 auto 20px auto;
+      padding: 20px;
+  }
+
+  .heading-container, .subheading {
+      text-align: center; 
+  }
+  .heading {
+      margin: 0 40px 20px auto;
+      padding: 10px 20px 10px;
+  }
+  .subheading {
+      margin: 0 50px 20px 10px;
+  }
+
+  .textfield-container, .button-container {
+      width: 100%;
+  }
+
+  .banner {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .banner-text {
+      text-align: center;
+      margin-left: 0;
+  }
+}
+.logged-in {
+  margin-left: -70px;
+} 
+
+  /* Reset CSS */
+  .split-screen-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+  
+  .left-pane-grid {
+    background-color: #FFFBF7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .right-pane-grid {
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height: 100%;
+  }
+  
+  /* .logo {
+    width: 220px;
+    height: 70px;
+    margin: 0 0 20px 70px;
+  } */
+  
+  .heading {
+    padding-left: 70px;
+    width: 80%;
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+    color: #666869;
+    font-weight: 700;
+  }
+  
+  .subheading {
+    color: #AEB1B0;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: -20px;
+    margin-left: 70px;
+  }
+  
+  .textfield-container {
+    width: 80%;
+    margin: 10px auto;
+    position: relative;
+  }
+  
+  .styled-textfield {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    background-color: white;
+    color: #AEB1B0;
+  }
+  
+  .textfield-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #AEB1B0;
+    cursor: pointer;
+  }
+  
+  .button-container {
+    width: 80%;
+    margin: 10px auto;
+    padding-bottom: 20px;
+  }
+  
+  .login-button {
+    width: 100%;
+    height: 65px;
+    background-color: #FF7A00;
+    text-transform: none;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .account-text {
+    color: #AEB1B0;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: -20px;
+    margin-left: 70px;
+  }
+  
+  .styled-link {
+    text-decoration: none;
+    color: #AEB1B0;
+    cursor: pointer;
+  }
+  .styled-link:hover{
+    text-decoration: underline #FF7A00;
+  } 
+  
+  .help-outline {
+    color: white;
+    text-align: right;
+    padding-right: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  @media (max-width: 768px) {
+    .split-screen-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .logo {
+      margin: 0 auto 20px auto;
+    }
+  
+    .heading {
+      padding-left: 0;
+      text-align: center;
+    }
+  
+    .textfield-container, .button-container {
+      width: 100%;
+    }
+    
+  }
+  
