@@ -99,8 +99,8 @@ body, html {
 .styled-textfield {
   width: 100%;
   height: 55px;
-  padding: 20px 10px 10px 10px;
-  margin-bottom: 20px;
+  padding: 20px;
+  margin-bottom: 15px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border: none;
@@ -113,7 +113,7 @@ body, html {
   color: #000;
   font-size: 12px;
   position: absolute;
-  top: 10px;
+  top: 15px;
   left: 10px;
   transition: all 0.3s ease;
   pointer-events: none;
@@ -134,8 +134,8 @@ body, html {
 .textfield-icon {
   position: absolute;
   right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 40%;
+  transform: translateY(-40%);
   color: #AEB1B0;
   cursor: pointer;
 }
@@ -144,6 +144,8 @@ body, html {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: absolute;
+  bottom: -20px;
 }
 
 .show-hide {
@@ -286,7 +288,7 @@ body, html {
   
   .styled-textfield {
     width: 100%;
-    padding: 10px;
+    padding: 20px 10px 20px 10px;
     margin-bottom: 10px;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -298,8 +300,8 @@ body, html {
   .textfield-icon {
     position: absolute;
     right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 70%;
+    transform: translateY(-70%);
     color: #AEB1B0;
     cursor: pointer;
   }
@@ -365,6 +367,17 @@ body, html {
     .textfield-container, .button-container {
       width: 100%;
     }
-    
+    .links {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  
+    .logged-in {
+      margin-left: -80px;
+    }
+  
+    .checkbox-container {
+      margin-bottom: 10px;
+    }
   }
   

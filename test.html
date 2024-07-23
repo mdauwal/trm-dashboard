@@ -1,381 +1,264 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRM Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200..1000&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: "Mulish", sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: white;
-            display: flex;
-            height: 100vh;
-            flex-direction: column;
-        }
-        .container {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
-        }
-        .sidebar {
-            width: 50px;
-            background-color: #333;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 15px 0;
-        }
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            margin: 20px 0;
-            font-size: 10px;
-        }
-        .sidebar a img {
-            width: 20px;
-            height: 20px;
-        }
-        .logo-column {
-            width: 200px;
-            background-color: white;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .logo img {
-            width: 150px;
-            height: auto;
-        }
-        .menu {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            gap: 10px;
-        }
-        .menu a {
-            display: flex;
-            align-items: center;
-            color: #FF7A00;
-            text-decoration: none;
-            font-size: 18px;
-        }
-        .menu a img {
-            margin-right: 10px;
-            width: 20px;
-            height: 20px;
-        }
-        .main-content {
-            flex: 1;
-            padding: 20px;
-            background-color: white;
-            overflow-y: auto;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        .header-left {
-            display: flex;
-            flex-direction: column;
-        }
-        .header-left h1 {
-            margin: 0;
-            color: #34475E;
-        }
-        .header-left p {
-            margin: 5px 0;
-            color: #2F2F2F;
-        }
-        .header-right {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-        }
-        .create-new-inspection-btn {
-            background-color: #FF7A00;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-left: 20px;
-        }
-        .create-new-inspection-btn:hover {
-            background-color: #FF8500;
-        }
-        .inspection-list-container {
-            margin-bottom: 20px;
-        }
-        .filter-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .filter-buttons a {
-            text-decoration: none;
-        }
-        .filter-buttons button {
-            padding: 10px 20px;
-            background-color: #FF7A00;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .filter-buttons button:hover {
-            background-color: #f3f3f3;
-            color: #FF7A00;
-        }
-        .filter-buttons .selected {
-            background-color: transparent;
-            color: #FF7A00;
-        }
-        .search-bar {
-            display: flex;
-            flex: 1;
-            gap: 10px;
-        }
-        .search-bar input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .search-bar button {
-            padding: 10px 20px;
-            background-color: #FF7A00;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .search-bar button:hover {
-            background-color: #FF8500;
-        }
-        .inspection-list {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .inspection-list th, .inspection-list td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        .inspection-list th {
-            background-color: #f2f2f2;
-            color: black;
-        }
-        .inspection-list td {
-            text-align: center;
-        }
-        .status-ongoing {
-            background-color: #FFDEBF;
-            color: #FF7A00;
-            padding: 5px;
-            border-radius: 5px;
-        }
-        .status-completed {
-            background-color: white;
-            color: #32CD32;
-            padding: 5px;
-            border-radius: 5px;
-        }
-
-        /* Media Queries */
-        @media (max-width: 1200px) {
-            .logo-column {
-                width: 150px;
-            }
-            .logo img {
-                width: 120px;
-            }
-            .menu a {
-                font-size: 16px;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .container {
-                flex-direction: column;
-            }
-            .sidebar, .logo-column {
-                width: 100%;
-                padding: 10px;
-            }
-            .sidebar {
-                height: auto;
-                flex-direction: row;
-                overflow-x: auto;
-                display: none;
-            }
-            .sidebar a {
-                font-size: 12px;
-            }
-            .menu a {
-                font-size: 14px;
-            }
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .header-right {
-                margin-top: 10px;
-            }
-            .filter-buttons {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .search-bar {
-                flex-direction: column;
-                gap: 5px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-left h1 {
-                font-size: 1.5em;
-            }
-            .header-left p {
-                font-size: 0.875em;
-            }
-            .filter-buttons button {
-                padding: 8px 15px;
-            }
-            .search-bar input {
-                width: 100%;
-            }
-            .search-bar button {
-                width: 100%;
-                padding: 8px 15px;
-            }
-            .inspection-list th, .inspection-list td {
-                padding: 6px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .sidebar a {
-                margin: 10px 0;
-                font-size: 8px;
-            }
-            .logo-column {
-                padding: 10px;
-            }
-            .logo img {
-                width: 100px;
-            }
-            .menu a {
-                font-size: 12px;
-            }
-            .header-left h1 {
-                font-size: 1.25em;
-            }
-            .header-left p {
-                font-size: 0.75em;
-            }
-            .filter-buttons button {
-                padding: 6px 10px;
-                font-size: 12px;
-            }
-            .search-bar input {
-                padding: 8px;
-                font-size: 12px;
-            }
-            .search-bar button {
-                padding: 8px;
-                font-size: 12px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="sidebar">
-            <a href="#"><img src="./images/vector1.png" alt=""></a>
-            <a href="#"><img src="./images/vector2.png" alt=""></a>
-            <a href="#"><img src="./images/Vector3.png" alt=""></a>
-            <a href="#"><img src="./images/vector4.png" alt=""></a>
-            <a href="#"><img src="./images/vector5.png" alt=""></a>
-            <a href="#"><img src="./images/vector6.png" alt=""></a>
-        </div>
-        <div class="logo-column">
-            <div class="logo">
-                <img src="./images/logo2.png" alt="Logo">
-            </div>
-            <h4>TRM</h4>
-            <div class="menu">
-                <a href="index3.html"><img src="./images/overviewIcon.png" alt=""> Overview</a>
-                <a href="inspectList.html"><img src="./images/requestIcon.png" alt=""> Requests</a>
-            </div>
-        </div>
-        <div class="main-content">
-            <div class="header">
-                <div class="header-left">
-                    <h1>Inspection List</h1>
-                    <p>See inspections across all business classes.</p>
-                </div>
-                <div class="header-right">
-                    <a href="newInspection.html"><button class="create-new-inspection-btn">+ Create New Inspection</button></a>
-                </div>
-            </div>
-            <div class="inspection-list-container">
-                <div class="filter-buttons">
-                    <a href="#"><button class="selected">All Requests</button></a>
-                    <a href="ongoing.html"><button>Ongoing</button></a>
-                    <a href="completed.html"><button>Completed</button></a>
-                    <div class="search-bar">
-                        <input type="text" placeholder="Search...">
-                        <button><i class="fas fa-search"></i></button>
-                    </div>
-                </div>
-                <table class="inspection-list">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Date</th>
-                            <th>Name</th>
-                            <th>Inspection Method</th>
-                            <th>Officer</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>10321</td>
-                            <td>15/06/2023</td>
-                            <td>Ravenheights properties</td>
-                            <td>Digital</td>
-                            <td>Mustapha Onasanaya</td>
-                            <td><span class="status-ongoing">Ongoing</span></td>
-                        </tr>
-                        <tr>
-                            <td>10321</td>
-                            <td>12/06/2023</td>
-                            <td>Shoprite Stores</td>
-                            <td>Manual</td>
-                            <td>Mustapha Onasanaya</td>
-                            <td><span class="status-completed">Completed</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Mulish', sans-serif;
+  }
+  
+  .split-screen {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+  
+  .left-pane {
+    background-color: #FFFBF7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .right-pane {
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  
+  .banner {
+    background-color: white;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #585858;
+    width: 90%;
+    height: auto;
+    max-width: 550px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .banner-image {
+    height: 50px;
+    border: 2px solid white;
+    flex-shrink: 0;
+  }
+  
+  .banner-text {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 5px;
+    margin-top: 0px;
+  }
+  
+  .banner-text p {
+    margin-top: -15px;
+  }
+  
+  .logo {
+    width: 60px;
+    height: 70px;
+    margin-left: 70px;
+    margin-bottom: 30px;
+  }
+  
+  .heading-container {
+    width: 100%;
+    margin-left: -75px;
+    padding-left: 70px;
+  }
+  
+  .heading {
+    color: #666869;
+    font-weight: 700;
+  }
+  
+  .subheading {
+    color: #AEB1B0;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: -20px;
+  }
+  
+  .textfield-container {
+    width: 80%;
+    margin: 10px auto;
+    position: relative;
+  }
+  
+  .styled-textfield {
+    width: 100%;
+    height: 55px;
+    padding: 20px 10px 10px 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    color: #000;
+    position: relative;
+    background-color: white;
+  }
+  
+  .textfield-label {
+    color: #000;
+    font-size: 12px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .logged-in {
+    margin-left: 10px;
+  }
+  
+  .styled-textfield:focus + .textfield-label,
+  .styled-textfield:not(:placeholder-shown) + .textfield-label {
+    top: 5px;
+    left: 10px;
+    font-size: 10px;
+    color: #AEB1B0;
+  }
+  
+  .textfield-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #AEB1B0;
+    cursor: pointer;
+  }
+  
+  .password-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .show-hide {
+    color: #FF7A00;
+    margin-right: 5px;
+  }
+  
+  .links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 10px auto;
+    flex-wrap: wrap;
+  }
+  
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .keepMeLoggedIn:checked + .logged-in {
+    color: #FF7A00;
+  }
+  
+  .keepMeLoggedIn:checked {
+    background-color: #FF7A00;
+    border-color: #FF7A00;
+  }
+  
+  .styled-link {
+    text-decoration: none;
+    color: #AEB1B0;
+    cursor: pointer;
+  }
+  
+  .button-container {
+    width: 80%;
+    margin: 10px auto;
+    padding-bottom: 20px;
+  }
+  
+  .login-button {
+    width: 100%;
+    text-transform: none;
+    background-color: #FF7A00;
+    border: none;
+    padding: 15px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .help-outline {
+    color: white;
+    text-align: right;
+    padding-right: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 10px;
+    gap: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .split-screen {
+      grid-template-columns: 1fr;
+    }
+  
+    .logo {
+      margin: 0 auto 20px auto;
+      padding: 20px;
+    }
+  
+    .heading-container, .subheading {
+      text-align: center; 
+    }
+  
+    .heading {
+      margin: 0 40px 20px auto;
+      padding: 10px 20px 10px;
+    }
+  
+    .subheading {
+      margin: 0 50px 20px 10px;
+    }
+  
+    .textfield-container, .button-container {
+      width: 100%;
+    }
+  
+    .banner {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .banner-text {
+      text-align: center;
+      margin-left: 0;
+    }
+  
+    .links {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .logged-in {
+      margin-left: 0;
+    }
+  
+    .checkbox-container {
+      margin-bottom: 10px;
+    }
+  }
+  
