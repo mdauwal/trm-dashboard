@@ -99,8 +99,8 @@ body, html {
 .styled-textfield {
   width: 100%;
   height: 55px;
-  padding: 50px;
-  margin-bottom: 15px;
+  padding: 20px 10px 10px 10px;
+  margin-bottom: 20px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border: none;
@@ -113,7 +113,7 @@ body, html {
   color: #000;
   font-size: 12px;
   position: absolute;
-  top: 15px;
+  top: 10px;
   left: 10px;
   transition: all 0.3s ease;
   pointer-events: none;
@@ -135,23 +135,24 @@ body, html {
   position: absolute;
   right: 10px;
   top: 40%;
-  transform: translateY(-40%);
+  bottom: 45px;
+  transform: translateY(-50%);
   color: #AEB1B0;
   cursor: pointer;
 }
 
-.password-icon {
+/* .password-icon{
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
-  bottom: -20px;
-}
+} */
 
 .show-hide {
   color: #FF7A00;
   margin-right: 5px;
-  margin-bottom: 10px;
+  position:relative;
+  top: -30px;
+  left: 30px;
 }
 
 .links {
@@ -166,6 +167,7 @@ body, html {
   text-decoration: none;
   color: #AEB1B0;
   cursor: pointer;
+  position: relative;
 }
 
 .button-container {
@@ -233,6 +235,9 @@ body, html {
       margin-left: 0;
   }
 }
+.logged-in {
+  margin-left: -70px;
+} 
 
   /* Reset CSS */
   .split-screen-grid {
@@ -289,7 +294,7 @@ body, html {
   
   .styled-textfield {
     width: 100%;
-    padding: 20px 10px 20px 10px;
+    padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -301,8 +306,8 @@ body, html {
   .textfield-icon {
     position: absolute;
     right: 10px;
-    top: 70%;
-    transform: translateY(-70%);
+    top: 50%;
+    transform: translateY(-50%);
     color: #AEB1B0;
     cursor: pointer;
   }
@@ -337,9 +342,9 @@ body, html {
     color: #AEB1B0;
     cursor: pointer;
   }
-  .styled-link:hover{
-    text-decoration: underline #FF7A00;
-  } 
+  /* .styled-link:hover{
+    background-color: #FF7A00;
+  }  */
   
   .help-outline {
     color: white;
@@ -368,17 +373,6 @@ body, html {
     .textfield-container, .button-container {
       width: 100%;
     }
-    .links {
-      flex-direction: row;
-      align-items: flex-start;
-    }
-  
-    .logged-in {
-      margin-left: -80px;
-    }
-  
-    .checkbox-container {
-      margin-bottom: 10px;
-    }
+    
   }
   
