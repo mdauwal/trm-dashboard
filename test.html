@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="test.css">
+</head>
+<body>
+  <div class="split-screen">
+    <div class="left-pane">
+      <img src="logo.png" alt="Logo" class="logo">
+      <div class="heading-container">
+        <h2 class="heading">Welcome Back!</h2>
+        <p class="subheading">Please login to your account</p>
+      </div>
+      <div class="textfield-container">
+        <input type="text" class="styled-textfield" id="login-id" placeholder=" ">
+        <label for="login-id" class="textfield-label">Login ID</label>
+        <span class="textfield-icon">👤</span>
+      </div>
+      <div class="textfield-container">
+        <input type="password" class="styled-textfield" id="password" placeholder=" ">
+        <label for="password" class="textfield-label">Password</label>
+        <span class="textfield-icon">🔒</span>
+        <span class="show-hide" onclick="togglePasswordVisibility()">👁</span>
+      </div>
+      <div class="button-container">
+        <button class="login-button" onclick="validateLogin()">Login</button>
+      </div>
+    </div>
+    <div class="right-pane">
+      <div class="banner">
+        <img src="banner-image.jpg" alt="Banner Image" class="banner-image">
+        <div class="banner-text">
+          <h3>Welcome to Our Service</h3>
+          <p>Providing the best solutions for your needs</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="test.js"></script>
+</body>
+</html>

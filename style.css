@@ -72,22 +72,18 @@ body, html {
   margin-bottom: 30px;
 }
 
-.heading-container {
-  width: 100%;
-  margin-left: -75px;
-  padding-left: 70px;
-}
 
 .heading {
   color: #666869;
-  font-weight: 700;
+  padding-left: 70px;
+  margin-bottom: -15px;
+  
 }
 
 .subheading {
+  padding-left: 70px;
   color: #AEB1B0;
-  font-size: 14px;
-  font-weight: 400;
-  margin-top: -20px;
+  
 }
 
 .textfield-container {
@@ -160,11 +156,60 @@ body, html {
   margin: 10px auto;
 }
 
+.checkbox-container {
+  display: inline-block;
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #AEB1B0;
+  user-select: none;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 3px;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #FF7A00;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-container .checkmark:after {
+  left: 7px;
+  top: 4px;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
 .styled-link {
   text-decoration: none;
   color: #AEB1B0;
   cursor: pointer;
-  position: relative;
 }
 
 .button-container {
@@ -195,47 +240,6 @@ body, html {
   margin-top: 10px;
   gap: 10px;
 }
-
-@media (max-width: 768px) {
-  .split-screen {
-      grid-template-columns: 1fr;
-  }
-
-  .logo {
-      margin: 0 auto 20px auto;
-      padding: 20px;
-  }
-
-  .heading-container, .subheading {
-      text-align: center; 
-  }
-  .heading {
-      margin: 0 40px 20px auto;
-      padding: 10px 20px 10px;
-  }
-  .subheading {
-      margin: 0 50px 20px 10px;
-  }
-
-  .textfield-container, .button-container {
-      width: 100%;
-  }
-
-  .banner {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-  }
-
-  .banner-text {
-      text-align: center;
-      margin-left: 0;
-  }
-}
-.logged-in {
-  margin-left: -70px;
-} 
-
   /* Reset CSS */
   .split-screen-grid {
     display: grid;
@@ -261,26 +265,22 @@ body, html {
     height: 100%;
   }
   
-  /* .logo {
-    width: 220px;
-    height: 70px;
-    margin: 0 0 20px 70px;
-  } */
   
-  .heading {
+  
+  .heading-reset {
     padding-left: 70px;
     width: 80%;
-    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
     color: #666869;
     font-weight: 700;
+    margin-bottom: -30px;
   }
   
-  .subheading {
+  .subheading-reset {
+    padding-left: 70px;
     color: #AEB1B0;
     font-size: 14px;
     font-weight: 400;
-    margin-top: -20px;
-    margin-left: 70px;
+    
   }
   
   .textfield-container {
@@ -290,6 +290,7 @@ body, html {
   }
   
   .styled-textfield {
+    position: relative;
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -350,9 +351,33 @@ body, html {
     justify-content: flex-end;
   }
   
-  
+
   @media (max-width: 768px) {
-    .split-screen-grid {
+    .split-screen {
+      grid-template-columns: 1fr;
+    }
+  
+    .logo {
+      margin: 0 auto 20px auto;
+      padding: 20px;
+    }
+  
+    .heading, .subheading {
+      text-align: left;
+      padding-left: 10px;
+    }
+  
+    .textfield-container, .button-container {
+      width: 100%;
+    }
+  
+    .banner {
+      display: none;
+    }
+  }
+  
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .split-screen {
       grid-template-columns: 1fr;
     }
   
@@ -360,11 +385,12 @@ body, html {
       margin: 0 auto 20px auto;
     }
   
+    .heading, .subheading {
+      text-align: left;
+    }
   
     .textfield-container, .button-container {
-      width: 100%;
-
+      width: 80%;
     }
-    
   }
   
