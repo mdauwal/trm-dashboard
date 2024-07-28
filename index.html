@@ -17,12 +17,12 @@
         <p class="subheading">Welcome. Login to your portal account.</p>
       </div>
       <div class="textfield-container">
-        <input type="text" placeholder="Enter your Login ID" class="styled-textfield" id="loginId">
+        <input type="text" placeholder="Enter your Login ID" class="styled-textfield" id="loginId" value="admin">
         <label for="loginId" class="textfield-label">Login ID</label>
         <span class="textfield-icon user-icon"><i class="fa-solid fa-user"></i></span>
       </div>
       <div class="textfield-container">
-        <input type="password" placeholder="Enter your password" class="styled-textfield" id="password">
+        <input type="password" placeholder="Enter your password" class="styled-textfield" id="password" value="admin">
         <label for="password" class="textfield-label">Password</label>
         <div class="textfield-icon password-icon" id="togglePassword">
           <span class="show-hide">show</span>
@@ -37,7 +37,7 @@
         <a href="reset.html" class="styled-link">Reset password</a>
       </div>
       <div class="button-container">
-        <a href="dashboard.html"><button class="login-button" id="loginButton">Login</button></a>
+        <button class="login-button" id="loginButton">Login</button>
       </div>
     </div>
     <div class="right-pane">
@@ -52,5 +52,29 @@
     </div>
   </div>
   <script src="script.js"></script>
+  <script>
+    document.getElementById('loginButton').addEventListener('click', function() {
+      const loginId = document.getElementById('loginId').value;
+      const password = document.getElementById('password').value;
+
+      if (loginId === 'admin' && password === 'admin') {
+        window.location.href = 'dashboard.html';
+      } else {
+        alert('Invalid Login ID or Password');
+      }
+    });
+
+    document.getElementById('togglePassword').addEventListener('click', function() {
+      const passwordField = document.getElementById('password');
+      const showHideText = this.querySelector('.show-hide');
+      if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        showHideText.textContent = 'hide';
+      } else {
+        passwordField.type = 'password';
+        showHideText.textContent = 'show';
+      }
+    });
+  </script>
 </body>
 </html>

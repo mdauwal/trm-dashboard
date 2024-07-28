@@ -3,42 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="stylesheet" href="test.css">
+  <title>Underwriter Login Dashboard</title>
+  <link rel="icon" href="./images/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 <body>
   <div class="split-screen">
     <div class="left-pane">
-      <img src="logo.png" alt="Logo" class="logo">
+      <img src="logo.jpg" alt="Leadway Logo" class="logo">
       <div class="heading-container">
-        <h2 class="heading">Welcome Back!</h2>
-        <p class="subheading">Please login to your account</p>
+        <h2 class="heading">Underwriter Dashboard</h2>
+        <p class="subheading">Welcome. Login to your portal account.</p>
       </div>
       <div class="textfield-container">
-        <input type="text" class="styled-textfield" id="login-id" placeholder=" ">
-        <label for="login-id" class="textfield-label">Login ID</label>
-        <span class="textfield-icon">👤</span>
+        <input type="text" placeholder="Enter your Login ID" class="styled-textfield" id="loginId" value="admin">
+        <label for="loginId" class="textfield-label">Login ID</label>
+        <span class="textfield-icon user-icon"><i class="fa-solid fa-user"></i></span>
       </div>
       <div class="textfield-container">
-        <input type="password" class="styled-textfield" id="password" placeholder=" ">
+        <input type="password" placeholder="Enter your password" class="styled-textfield" id="password" value="admin">
         <label for="password" class="textfield-label">Password</label>
-        <span class="textfield-icon">🔒</span>
-        <span class="show-hide" onclick="togglePasswordVisibility()">👁</span>
+        <div class="textfield-icon password-icon" id="togglePassword">
+          <span class="show-hide">show</span>
+          <i class="fa-solid fa-lock"></i>
+        </div>
+      </div>
+      <div class="links">
+        <label for="keepMeLoggedIn" class="checkbox-container">Keep me logged in
+          <input type="checkbox" id="keepMeLoggedIn">
+          <span class="checkmark"></span>
+        </label>
+        <a href="reset.html" class="styled-link">Reset password</a>
       </div>
       <div class="button-container">
-        <button class="login-button" onclick="validateLogin()">Login</button>
+        <button class="login-button" id="loginButton">Login</button>
       </div>
     </div>
     <div class="right-pane">
+      <h5 class="help-outline"><i class="fa-regular fa-circle-question"></i> Help</h5>
       <div class="banner">
-        <img src="banner-image.jpg" alt="Banner Image" class="banner-image">
+        <img src="group.png" alt="Avatar" class="banner-image">
         <div class="banner-text">
-          <h3>Welcome to Our Service</h3>
-          <p>Providing the best solutions for your needs</p>
+          <h4>Customer Management</h4>
+          <p>Manage all customers from individual customers to corporate or group customers</p>
         </div>
       </div>
     </div>
   </div>
-  <script src="test.js"></script>
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('loginButton').addEventListener('click', function() {
+      const loginId = document.getElementById('loginId').value;
+      const password = document.getElementById('password').value;
+
+      if (loginId === 'admin' && password === 'admin') {
+        window.location.href = 'dashboard.html';
+      } else {
+        alert('Invalid Login ID or Password');
+      }
+    });
+
+    document.getElementById('togglePassword').addEventListener('click', function() {
+      const passwordField = document.getElementById('password');
+      const showHideText = this.querySelector('.show-hide');
+      if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        showHideText.textContent = 'hide';
+      } else {
+        passwordField.type = 'password';
+        showHideText.textContent = 'show';
+      }
+    });
+  </script>
 </body>
 </html>
